@@ -62,7 +62,7 @@ class CodeOwners:
             yield from section.rules
 
     def find_rule(self, path: Path) -> Rule | None:
-        for section in self.sections:
+        for section in reversed(self.sections):
             rule = section.find_rule(path)
             if rule is not None:
                 return rule

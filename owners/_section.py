@@ -29,10 +29,10 @@ class Section:
 
     def find_rule(self, path: Path) -> Rule | None:
         path = path.absolute()
-        for rule in self.rules:
+        for rule in reversed(self.rules):
             if path in rule.paths:
                 return rule
-        for rule in self.rules:
+        for rule in reversed(self.rules):
             if rule.includes(path):
                 return rule
         return None
