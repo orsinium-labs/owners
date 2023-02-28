@@ -54,6 +54,12 @@ class CodeOwners:
                 section_name = line
                 rules = []
 
+        if rules:
+            sections.append(Section(
+                root=self.root,
+                raw=section_name,
+                rules=tuple(rules),
+            ))
         return tuple(sections)
 
     @property
