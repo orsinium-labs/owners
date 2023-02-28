@@ -30,7 +30,7 @@ class Rule:
         path = Path(raw)
         if not path.exists():
             return tuple()
-        return (path,)
+        return (path.absolute(),)
 
     @cached_property
     def owners(self) -> tuple[str, ...]:
