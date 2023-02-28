@@ -18,8 +18,15 @@ class Rule:
     def paths(self) -> tuple[Path, ...]:
         raw = self.raw_path.lstrip('/')
         if '*' in raw:
-            paths = self.root.glob(raw)
-            return tuple(path.absolute() for path in paths)
+            paths = [path.absolute() for path in self.root.glob(raw)]
+            paths_set = set(paths)
+            # remove paths that are children of other paths
+            deduplicated = []
+            for path in paths:
+                if not set(path.parents) & paths_set:
+                    deduplicated.append(path)
+            return tuple(deduplicated)
+
         path = Path(raw)
         if not path.exists():
             return tuple()
