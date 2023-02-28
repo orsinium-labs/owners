@@ -6,6 +6,7 @@ from typing import Any
 
 RED = '\033[31m'
 GREEN = '\033[32m'
+YELLOW = '\033[33m'
 BLUE = '\033[94m'
 MAGENTA = '\033[35m'
 END = '\033[0m'
@@ -34,3 +35,8 @@ class Colors:
         if self.disabled:
             return str(text)
         return f'{MAGENTA}{text}{END}'
+
+    def yellow(self, text: Any) -> str:
+        if self.disabled:
+            return str(text)
+        return f'{YELLOW}{text}{END}'
