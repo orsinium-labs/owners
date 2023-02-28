@@ -5,8 +5,8 @@ from functools import cached_property
 from pathlib import Path
 from typing import Iterator
 
-from ._section import Section
 from ._rule import Rule
+from ._section import Section
 
 
 @dataclass(frozen=True)
