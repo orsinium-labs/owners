@@ -3,6 +3,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 from functools import cached_property
 from pathlib import Path
+from typing import Iterator
 
 from ._section import Section
 from ._rule import Rule
@@ -48,11 +49,17 @@ class CodeOwners:
                     sections.append(Section(
                         root=self.root,
                         raw=section_name,
-                        rules=tuple(rules)
+                        rules=tuple(rules),
                     ))
                 section_name = line
+                rules = []
 
         return tuple(sections)
+
+    @property
+    def rules(self) -> Iterator[Rule]:
+        for section in self.sections:
+            yield from section.rules
 
     def find_rule(self, path: Path) -> Rule | None:
         for section in self.sections:

@@ -6,7 +6,7 @@ from ._base import Command
 
 
 class Version(Command):
-    """Print the version of mypy-baseline.
+    """Print the version of the tool.
     """
 
     @staticmethod
